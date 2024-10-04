@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sinks R Us - Employee List</title>
+    <style href="employee_list.css"> </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto py-8">
+        <h1 class="text-3xl font-bold mb-6">Sinks R Us Employee List</h1>
+        <div class="bg-white rounded-lg shadow overflow-x-auto">
+            <table class="w-full table-auto">
+                <thead>
+                    <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                        <th class="py-3 px-6 text-left">Name</th>
+                        <th class="py-3 px-6 text-left">Job Title</th>
+                        <th class="py-3 px-6 text-left">Department</th>
+                        <th class="py-3 px-6 text-left">Email</th>
+                        <th class="py-3 px-6 text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="text-gray-600 text-sm font-light">
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6 text-left whitespace-nowrap">Ivan Petrov</td>
+                        <td class="py-3 px-6 text-left">Software Engineer</td>
+                        <td class="py-3 px-6 text-left">IT</td>
+                        <td class="py-3 px-6 text-left">ivan.petrov@sinksrus.com</td>
+                        <td class="py-3 px-6 text-center">
+                            <button onclick="openModal('Ivan Petrov')" class="bg-blue-500 text-white py-1 px-3 rounded-full text-xs">View</button>
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6 text-left whitespace-nowrap">Pedro Los Baños</td>
+                        <td class="py-3 px-6 text-left">Marketing Manager</td>
+                        <td class="py-3 px-6 text-left">Marketing</td>
+                        <td class="py-3 px-6 text-left">pedro_los_banos@sinksrus.com</td>
+                        <td class="py-3 px-6 text-center">
+                            <button onclick="openModal('Pedro Los Baños')" class="bg-blue-500 text-white py-1 px-3 rounded-full text-xs">View</button>
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6 text-left whitespace-nowrap">Ana Gómez</td>
+                        <td class="py-3 px-6 text-left">HR Specialist</td>
+                        <td class="py-3 px-6 text-left">HR</td>
+                        <td class="py-3 px-6 text-left">ana.gomez@sinksrus.com</td>
+                        <td class="py-3 px-6 text-center">
+                            <button onclick="openModal('Ana Gómez')" class="bg-blue-500 text-white py-1 px-3 rounded-full text-xs">View</button>
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6 text-left whitespace-nowrap">John Wu</td>
+                        <td class="py-3 px-6 text-left">Sales Associate</td>
+                        <td class="py-3 px-6 text-left">Sales</td>
+                        <td class="py-3 px-6 text-left">john.wu@sinksrus.com</td>
+                        <td class="py-3 px-6 text-center">
+                            <button onclick="openModal('John Wu')" class="bg-blue-500 text-white py-1 px-3 rounded-full text-xs">View</button>
+                        </td>
+                    </tr>
+                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                        <td class="py-3 px-6 text-left whitespace-nowrap">Emma Wilson</td>
+                        <td class="py-3 px-6 text-left">CEO</td>
+                        <td class="py-3 px-6 text-left">Admin</td>
+                        <td class="py-3 px-6 text-left">emma@sinksrus.com</td>
+                        <td class="py-3 px-6 text-center">
+                            <button onclick="openModal('Emma Wilson')" class="bg-blue-500 text-white py-1 px-3 rounded-full text-xs">View</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="employeeModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full hidden">
+        <div class="relative top-20 mx-auto p-5 border w-96 shadow-lg rounded-md bg-white">
+            <div class="mt-3 text-center">
+                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modalTitle"></h3>
+                <div class="mt-2 px-7 py-3">
+                    <p class="text-sm text-gray-500" id="modalContent"></p>
+                </div>
+                <div class="items-center px-4 py-3">
+                    <button id="closeModal" class="px-4 py-2 bg-gray-500 text-white text-base font-medium rounded-md w-full shadow-sm hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-300">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const employeeData = {
+            "Ivan Petrov": {
+                "Job Title": "Software Engineer",
+                "Department": "IT",
+                "Email": "ivan.petrov@sinksrus.com",
+                "Contact No.": "555-6789",
+                "Address": "12 Red Square, Moscow",
+                "Sex": "male",
+                "Marital Status": "Single"
+            },
+            "Pedro Los Baños": {
+                "Job Title": "Marketing Manager",
+                "Department": "Marketing",
+                "Email": "pedro_los_banos@sinksrus.com",
+                "Contact No.": "",
+                "Address": "123 Mabini St",
+                "Sex": "Male",
+                "Marital Status": "Married"
+            },
+            "Ana Gómez": {
+                "Job Title": "HR Specialist",
+                "Department": "HR",
+                "Email": "ana.gomez@sinksrus.com",
+                "Contact No.": "555-1526",
+                "Address": "",
+                "Sex": "F",
+                "Marital Status": "Divorced"
+            },
+            "John Wu": {
+                "Job Title": "Sales Associate",
+                "Department": "Sales",
+                "Email": "john.wu@sinksrus.com",
+                "Contact No.": "555-6925",
+                "Address": "456 Rizal St",
+                "Sex": "male",
+                "Marital Status": "Single"
+            },
+            "Emma Wilson": {
+                "Job Title": "CEO",
+                "Department": "Admin",
+                "Email": "emma@sinksrus.com",
+                "Contact No.": "555-1111",
+                "Address": "",
+                "Sex": "female",
+                "Marital Status": "Married"
+            }
+        };
+
+        function openModal(name) {
+            const modal = document.getElementById('employeeModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalContent = document.getElementById('modalContent');
+
+            modalTitle.textContent = name;
+            const employee = employeeData[name];
+            let content = '';
+            for (const [key, value] of Object.entries(employee)) {
+                content += `<strong>${key}:</strong> ${value}<br>`;
+            }
+            modalContent.innerHTML = content;
+
+            modal.classList.remove('hidden');
+        }
+
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('employeeModal').classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
