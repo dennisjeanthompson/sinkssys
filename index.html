@@ -3,26 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sinks R Us - Login</title>
-    <style href="index.css"> </style>
+    <meta name="description" content="Login page for Sinks R Us HR Portal">
+    <title>Sinks R Us - HR Portal Login</title>
+    <link rel="stylesheet" href="index.css">
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-100 h-screen flex items-center justify-center">
-    <div class="bg-white p-8 rounded-lg shadow-md w-96">
-        <h1 class="text-2xl font-bold mb-6 text-center">Sinks R Us HR Portal</h1>
-        <form action="employee_list.html" method="GET">
-            <div class="mb-4">
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center p-4">
+    <main class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+        <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">Sinks R Us HR Portal</h1>
+        <form id="loginForm" action="employee_list.html" method="GET" class="space-y-6">
+            <div>
                 <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
-                <input type="text" id="username" name="username" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                <input type="text" id="username" name="username" required 
+                       class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       autocomplete="username">
             </div>
-            <div class="mb-6">
+            <div>
                 <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
-                <input type="password" id="password" name="password" required class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                <input type="password" id="password" name="password" required 
+                       class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                       autocomplete="current-password">
             </div>
-            <button type="submit" class="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
+            <button type="submit" 
+                    class="w-full bg-blue-500 text-white py-3 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300 ease-in-out">
                 Login
             </button>
         </form>
-    </div>
+    </main>
+    <footer class="mt-8 text-center text-gray-500 text-sm">
+        <p>&copy; 2024 Sinks R Us. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username.trim() === '' || password.trim() === '') {
+                alert('Please enter both username and password.');
+                return;
+            }
+
+            // For demo purposes, we're not actually checking the credentials
+            // In a real application, you would validate these against a backend
+            
+            // Redirect to the employee list page
+            window.location.href = 'employee_list.html';
+        });
+    </script>
 </body>
 </html>
